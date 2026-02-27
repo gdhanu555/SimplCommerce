@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SimplCommerce.WebHost.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDb : Migration
+    public partial class initialSchema : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,9 +17,9 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ActivityLog_ActivityType",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,13 +30,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_Brand",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -47,9 +47,9 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductAttributeGroup",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -60,9 +60,9 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductOption",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,9 +73,9 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductTemplate",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,11 +86,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Cms_Menu",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    IsSystem = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsSystem = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,10 +101,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Contacts_ContactArea",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -115,10 +115,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_AppSetting",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Module = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    IsVisibleInCommonSettingPage = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Module = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    IsVisibleInCommonSettingPage = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,14 +129,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Country",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Code3 = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    IsBillingEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    IsShippingEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    IsCityEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    IsZipCodeEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    IsDistrictEnabled = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Code3 = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    IsBillingEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsShippingEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsCityEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsZipCodeEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDistrictEnabled = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -147,14 +147,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_CustomerGroup",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -165,11 +165,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_EntityType",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    IsMenuable = table.Column<bool>(type: "bit", nullable: false),
-                    AreaName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    RoutingController = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    RoutingAction = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    IsMenuable = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AreaName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    RoutingController = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    RoutingAction = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -180,12 +180,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Media",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Caption = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    FileSize = table.Column<int>(type: "int", nullable: false),
-                    FileName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MediaType = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Caption = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    FileSize = table.Column<int>(type: "INTEGER", nullable: false),
+                    FileName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MediaType = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -196,11 +196,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Role",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -211,16 +211,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Vendor",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -231,13 +231,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Widget",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    ViewComponentName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CreateUrl = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    EditUrl = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    ViewComponentName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CreateUrl = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    EditUrl = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -248,10 +248,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_WidgetZone",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -259,11 +259,25 @@ namespace SimplCommerce.WebHost.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Inventory_ProductBackInStockSubscription",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventory_ProductBackInStockSubscription", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Localization_Culture",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,17 +288,17 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "News_NewsCategory",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    MetaTitle = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaKeywords = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -295,12 +309,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Payments_PaymentProvider",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    ConfigureUrl = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    LandingViewComponentName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    AdditionalSettings = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    IsEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ConfigureUrl = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    LandingViewComponentName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    AdditionalSettings = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -311,20 +325,20 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CartRule",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    StartOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    EndOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    IsCouponRequired = table.Column<bool>(type: "bit", nullable: false),
-                    RuleToApply = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MaxDiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    DiscountStep = table.Column<int>(type: "int", nullable: true),
-                    UsageLimitPerCoupon = table.Column<int>(type: "int", nullable: true),
-                    UsageLimitPerCustomer = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    StartOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    EndOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsCouponRequired = table.Column<bool>(type: "INTEGER", nullable: false),
+                    RuleToApply = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DiscountAmount = table.Column<double>(type: "REAL", nullable: false),
+                    MaxDiscountAmount = table.Column<double>(type: "REAL", nullable: true),
+                    DiscountStep = table.Column<int>(type: "INTEGER", nullable: true),
+                    UsageLimitPerCoupon = table.Column<int>(type: "INTEGER", nullable: true),
+                    UsageLimitPerCustomer = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -335,16 +349,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CatalogRule",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    StartOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    EndOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    RuleToApply = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MaxDiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    StartOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    EndOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    RuleToApply = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DiscountAmount = table.Column<double>(type: "REAL", nullable: false),
+                    MaxDiscountAmount = table.Column<double>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -355,11 +369,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ProductRecentlyViewed_RecentlyViewedProduct",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    LatestViewedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestViewedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -370,11 +384,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Search_Query",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QueryText = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    ResultsCount = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    QueryText = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false),
+                    ResultsCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -385,16 +399,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Shipping_ShippingProvider",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    IsEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    ConfigureUrl = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ToAllShippingEnabledCountries = table.Column<bool>(type: "bit", nullable: false),
-                    OnlyCountryIdsString = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    ToAllShippingEnabledStatesOrProvinces = table.Column<bool>(type: "bit", nullable: false),
-                    OnlyStateOrProvinceIdsString = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    AdditionalSettings = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShippingPriceServiceTypeName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    IsEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ConfigureUrl = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ToAllShippingEnabledCountries = table.Column<bool>(type: "INTEGER", nullable: false),
+                    OnlyCountryIdsString = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true),
+                    ToAllShippingEnabledStatesOrProvinces = table.Column<bool>(type: "INTEGER", nullable: false),
+                    OnlyStateOrProvinceIdsString = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true),
+                    AdditionalSettings = table.Column<string>(type: "TEXT", nullable: true),
+                    ShippingPriceServiceTypeName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -405,9 +419,9 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Tax_TaxClass",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -418,13 +432,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ActivityLog_Activity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ActivityTypeId = table.Column<long>(type: "bigint", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    EntityId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityTypeId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ActivityTypeId = table.Column<long>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityTypeId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -441,10 +455,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductAttribute",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    GroupId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    GroupId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -461,16 +475,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Contacts_Contact",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FullName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    EmailAddress = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContactAreaId = table.Column<long>(type: "bigint", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    FullName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    EmailAddress = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Address = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Content = table.Column<string>(type: "TEXT", nullable: true),
+                    ContactAreaId = table.Column<long>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -487,12 +501,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_StateOrProvince",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CountryId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Code = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Type = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -509,12 +523,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Entity",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    EntityId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityTypeId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityTypeId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -531,20 +545,20 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_Category",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    IncludeInMenu = table.Column<bool>(type: "bit", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    ParentId = table.Column<long>(type: "bigint", nullable: true),
-                    ThumbnailImageId = table.Column<long>(type: "bigint", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    MetaTitle = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaKeywords = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IncludeInMenu = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ParentId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ThumbnailImageId = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -567,11 +581,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_RoleClaim",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<long>(type: "bigint", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    RoleId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
+                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -588,18 +602,18 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_WidgetInstance",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    PublishStart = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    PublishEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    WidgetId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    WidgetZoneId = table.Column<long>(type: "bigint", nullable: false),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    Data = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HtmlData = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    PublishStart = table.Column<long>(type: "INTEGER", nullable: true),
+                    PublishEnd = table.Column<long>(type: "INTEGER", nullable: true),
+                    WidgetId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    WidgetZoneId = table.Column<long>(type: "INTEGER", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    Data = table.Column<string>(type: "TEXT", nullable: true),
+                    HtmlData = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -622,13 +636,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Localization_LocalizedContentProperty",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    EntityId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityType = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CultureId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProperyName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityType = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CultureId = table.Column<string>(type: "TEXT", nullable: false),
+                    ProperyName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Value = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -645,11 +659,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Localization_Resource",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Key = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CultureId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Key = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Value = table.Column<string>(type: "TEXT", nullable: true),
+                    CultureId = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -666,8 +680,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CartRuleCustomerGroup",
                 columns: table => new
                 {
-                    CartRuleId = table.Column<long>(type: "bigint", nullable: false),
-                    CustomerGroupId = table.Column<long>(type: "bigint", nullable: false)
+                    CartRuleId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerGroupId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -690,11 +704,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_Coupon",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CartRuleId = table.Column<long>(type: "bigint", nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CartRuleId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Code = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -711,8 +725,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CatalogRuleCustomerGroup",
                 columns: table => new
                 {
-                    CatalogRuleId = table.Column<long>(type: "bigint", nullable: false),
-                    CustomerGroupId = table.Column<long>(type: "bigint", nullable: false)
+                    CatalogRuleId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerGroupId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -735,8 +749,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductTemplateProductAttribute",
                 columns: table => new
                 {
-                    ProductTemplateId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductAttributeId = table.Column<long>(type: "bigint", nullable: false)
+                    ProductTemplateId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductAttributeId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -759,12 +773,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_District",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StateOrProvinceId = table.Column<long>(type: "bigint", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    StateOrProvinceId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Type = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Location = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -781,13 +795,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Tax_TaxRate",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TaxClassId = table.Column<long>(type: "bigint", nullable: false),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    StateOrProvinceId = table.Column<long>(type: "bigint", nullable: true),
-                    Rate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ZipCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TaxClassId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CountryId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    StateOrProvinceId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Rate = table.Column<double>(type: "REAL", nullable: false),
+                    ZipCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -816,14 +830,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Cms_MenuItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ParentId = table.Column<long>(type: "bigint", nullable: true),
-                    MenuId = table.Column<long>(type: "bigint", nullable: false),
-                    EntityId = table.Column<long>(type: "bigint", nullable: true),
-                    CustomLink = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ParentId = table.Column<long>(type: "INTEGER", nullable: true),
+                    MenuId = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CustomLink = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -852,8 +866,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CartRuleCategory",
                 columns: table => new
                 {
-                    CategoryId = table.Column<long>(type: "bigint", nullable: false),
-                    CartRuleId = table.Column<long>(type: "bigint", nullable: false)
+                    CategoryId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CartRuleId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -876,17 +890,17 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_Address",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    AddressLine1 = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    AddressLine2 = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    City = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ZipCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DistrictId = table.Column<long>(type: "bigint", nullable: true),
-                    StateOrProvinceId = table.Column<long>(type: "bigint", nullable: false),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ContactName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Phone = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    AddressLine1 = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    AddressLine2 = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    City = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ZipCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DistrictId = table.Column<long>(type: "INTEGER", nullable: true),
+                    StateOrProvinceId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CountryId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -915,17 +929,17 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Orders_OrderAddress",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    AddressLine1 = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    AddressLine2 = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    City = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ZipCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DistrictId = table.Column<long>(type: "bigint", nullable: true),
-                    StateOrProvinceId = table.Column<long>(type: "bigint", nullable: false),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ContactName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Phone = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    AddressLine1 = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    AddressLine2 = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    City = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ZipCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DistrictId = table.Column<long>(type: "INTEGER", nullable: true),
+                    StateOrProvinceId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CountryId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -954,15 +968,15 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ShippingTableRate_PriceAndDestination",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CountryId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    StateOrProvinceId = table.Column<long>(type: "bigint", nullable: true),
-                    DistrictId = table.Column<long>(type: "bigint", nullable: true),
-                    ZipCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MinOrderSubtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ShippingPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CountryId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    StateOrProvinceId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DistrictId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ZipCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Note = table.Column<string>(type: "TEXT", nullable: true),
+                    MinOrderSubtotal = table.Column<double>(type: "REAL", nullable: false),
+                    ShippingPrice = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -991,11 +1005,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Inventory_Warehouse",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    AddressId = table.Column<long>(type: "bigint", nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    AddressId = table.Column<long>(type: "INTEGER", nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1018,45 +1032,45 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_Product",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ShortDescription = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Specification = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OldPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SpecialPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SpecialPriceStart = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    SpecialPriceEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    HasOptions = table.Column<bool>(type: "bit", nullable: false),
-                    IsVisibleIndividually = table.Column<bool>(type: "bit", nullable: false),
-                    IsFeatured = table.Column<bool>(type: "bit", nullable: false),
-                    IsCallForPricing = table.Column<bool>(type: "bit", nullable: false),
-                    IsAllowToOrder = table.Column<bool>(type: "bit", nullable: false),
-                    StockTrackingIsEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    StockQuantity = table.Column<int>(type: "int", nullable: false),
-                    Sku = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Gtin = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    NormalizedName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true),
-                    ThumbnailImageId = table.Column<long>(type: "bigint", nullable: true),
-                    ReviewsCount = table.Column<int>(type: "int", nullable: false),
-                    RatingAverage = table.Column<double>(type: "float", nullable: true),
-                    BrandId = table.Column<long>(type: "bigint", nullable: true),
-                    TaxClassId = table.Column<long>(type: "bigint", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    PublishedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedById = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ShortDescription = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Specification = table.Column<string>(type: "TEXT", nullable: true),
+                    Price = table.Column<double>(type: "REAL", nullable: false),
+                    OldPrice = table.Column<double>(type: "REAL", nullable: true),
+                    SpecialPrice = table.Column<double>(type: "REAL", nullable: true),
+                    SpecialPriceStart = table.Column<long>(type: "INTEGER", nullable: true),
+                    SpecialPriceEnd = table.Column<long>(type: "INTEGER", nullable: true),
+                    HasOptions = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsVisibleIndividually = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsFeatured = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsCallForPricing = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsAllowToOrder = table.Column<bool>(type: "INTEGER", nullable: false),
+                    StockTrackingIsEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    StockQuantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    Sku = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Gtin = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    NormalizedName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ThumbnailImageId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ReviewsCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    RatingAverage = table.Column<double>(type: "REAL", nullable: true),
+                    BrandId = table.Column<long>(type: "INTEGER", nullable: true),
+                    TaxClassId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    MetaTitle = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaKeywords = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PublishedOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedById = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1085,11 +1099,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductAttributeValue",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AttributeId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    AttributeId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1112,12 +1126,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductCategory",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IsFeaturedProduct = table.Column<bool>(type: "bit", nullable: false),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false),
-                    CategoryId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    IsFeaturedProduct = table.Column<bool>(type: "INTEGER", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false),
+                    CategoryId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1140,11 +1154,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductLink",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    LinkedProductId = table.Column<long>(type: "bigint", nullable: false),
-                    LinkType = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LinkedProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LinkType = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1167,11 +1181,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductMedia",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    MediaId = table.Column<long>(type: "bigint", nullable: false),
-                    DisplayOrder = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    MediaId = table.Column<long>(type: "INTEGER", nullable: false),
+                    DisplayOrder = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1194,12 +1208,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductOptionCombination",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    OptionId = table.Column<long>(type: "bigint", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    SortIndex = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OptionId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    SortIndex = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1222,13 +1236,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductOptionValue",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OptionId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DisplayType = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    SortIndex = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OptionId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DisplayType = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    SortIndex = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1251,12 +1265,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Inventory_Stock",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    WarehouseId = table.Column<long>(type: "bigint", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    ReservedQuantity = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    WarehouseId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    ReservedQuantity = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1279,8 +1293,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CartRuleProduct",
                 columns: table => new
                 {
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    CartRuleId = table.Column<long>(type: "bigint", nullable: false)
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CartRuleId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1303,16 +1317,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Catalog_ProductPriceHistory",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    OldPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SpecialPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    SpecialPriceStart = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    SpecialPriceEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    Price = table.Column<double>(type: "REAL", nullable: true),
+                    OldPrice = table.Column<double>(type: "REAL", nullable: true),
+                    SpecialPrice = table.Column<double>(type: "REAL", nullable: true),
+                    SpecialPriceStart = table.Column<long>(type: "INTEGER", nullable: true),
+                    SpecialPriceEnd = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1329,20 +1343,20 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Checkouts_Checkout",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CustomerId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CouponCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CouponRuleName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ShippingMethod = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    IsProductPriceIncludeTax = table.Column<bool>(type: "bit", nullable: false),
-                    ShippingAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    TaxAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true),
-                    ShippingData = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderNote = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CustomerId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    CouponCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CouponRuleName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ShippingMethod = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    IsProductPriceIncludeTax = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShippingAmount = table.Column<double>(type: "REAL", nullable: true),
+                    TaxAmount = table.Column<double>(type: "REAL", nullable: true),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ShippingData = table.Column<string>(type: "TEXT", nullable: true),
+                    OrderNote = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1353,12 +1367,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Checkouts_CheckoutItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    CheckoutId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    CheckoutId = table.Column<Guid>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1381,21 +1395,21 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Cms_Page",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    PublishedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedById = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Body = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    MetaTitle = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaKeywords = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PublishedOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedById = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1406,16 +1420,16 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Comments_Comment",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    CommentText = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CommenterName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    EntityTypeId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    EntityId = table.Column<long>(type: "bigint", nullable: false),
-                    ParentId = table.Column<long>(type: "bigint", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CommentText = table.Column<string>(type: "TEXT", nullable: true),
+                    CommenterName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityTypeId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ParentId = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1432,8 +1446,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_CustomerGroupUser",
                 columns: table => new
                 {
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    CustomerGroupId = table.Column<long>(type: "bigint", nullable: false)
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CustomerGroupId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1450,33 +1464,33 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_User",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserGuid = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    DefaultShippingAddressId = table.Column<long>(type: "bigint", nullable: true),
-                    DefaultBillingAddressId = table.Column<long>(type: "bigint", nullable: true),
-                    RefreshTokenHash = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Culture = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ExtensionData = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
-                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserGuid = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FullName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    DefaultShippingAddressId = table.Column<long>(type: "INTEGER", nullable: true),
+                    DefaultBillingAddressId = table.Column<long>(type: "INTEGER", nullable: true),
+                    RefreshTokenHash = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Culture = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ExtensionData = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "INTEGER", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    LockoutEnd = table.Column<long>(type: "INTEGER", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "INTEGER", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1493,12 +1507,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_UserAddress",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    AddressId = table.Column<long>(type: "bigint", nullable: false),
-                    AddressType = table.Column<int>(type: "int", nullable: false),
-                    LastUsedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    AddressId = table.Column<long>(type: "INTEGER", nullable: false),
+                    AddressType = table.Column<int>(type: "INTEGER", nullable: false),
+                    LastUsedOn = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1521,11 +1535,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_UserClaim",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ClaimType = table.Column<string>(type: "TEXT", nullable: true),
+                    ClaimValue = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1542,10 +1556,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_UserLogin",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<long>(type: "bigint", nullable: false)
+                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
+                    ProviderKey = table.Column<string>(type: "TEXT", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "TEXT", nullable: true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1562,8 +1576,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_UserRole",
                 columns: table => new
                 {
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    RoleId = table.Column<long>(type: "bigint", nullable: false)
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    RoleId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1586,10 +1600,10 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Core_UserToken",
                 columns: table => new
                 {
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LoginProvider = table.Column<string>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Value = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1606,14 +1620,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Inventory_StockHistory",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    WarehouseId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    AdjustedQuantity = table.Column<long>(type: "bigint", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    WarehouseId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    AdjustedQuantity = table.Column<long>(type: "INTEGER", nullable: false),
+                    Note = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1642,23 +1656,23 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "News_NewsItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ShortContent = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    FullContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ThumbnailImageId = table.Column<long>(type: "bigint", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    Slug = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: false),
-                    MetaTitle = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaKeywords = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    MetaDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsPublished = table.Column<bool>(type: "bit", nullable: false),
-                    PublishedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedById = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ShortContent = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    FullContent = table.Column<string>(type: "TEXT", nullable: true),
+                    ThumbnailImageId = table.Column<long>(type: "INTEGER", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    Slug = table.Column<string>(type: "TEXT", maxLength: 450, nullable: false),
+                    MetaTitle = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaKeywords = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    MetaDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    IsPublished = table.Column<bool>(type: "INTEGER", nullable: false),
+                    PublishedOn = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedById = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1687,31 +1701,31 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Orders_Order",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CustomerId = table.Column<long>(type: "bigint", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true),
-                    CouponCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CouponRuleName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SubTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    SubTotalWithDiscount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    ShippingAddressId = table.Column<long>(type: "bigint", nullable: false),
-                    BillingAddressId = table.Column<long>(type: "bigint", nullable: false),
-                    OrderStatus = table.Column<int>(type: "int", nullable: false),
-                    OrderNote = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    ParentId = table.Column<long>(type: "bigint", nullable: true),
-                    IsMasterOrder = table.Column<bool>(type: "bit", nullable: false),
-                    ShippingMethod = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    ShippingFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TaxAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OrderTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    PaymentFeeAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CustomerId = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CouponCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CouponRuleName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    DiscountAmount = table.Column<double>(type: "REAL", nullable: false),
+                    SubTotal = table.Column<double>(type: "REAL", nullable: false),
+                    SubTotalWithDiscount = table.Column<double>(type: "REAL", nullable: false),
+                    ShippingAddressId = table.Column<long>(type: "INTEGER", nullable: false),
+                    BillingAddressId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OrderStatus = table.Column<int>(type: "INTEGER", nullable: false),
+                    OrderNote = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true),
+                    ParentId = table.Column<long>(type: "INTEGER", nullable: true),
+                    IsMasterOrder = table.Column<bool>(type: "INTEGER", nullable: false),
+                    ShippingMethod = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    ShippingFeeAmount = table.Column<double>(type: "REAL", nullable: false),
+                    TaxAmount = table.Column<double>(type: "REAL", nullable: false),
+                    OrderTotal = table.Column<double>(type: "REAL", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    PaymentFeeAmount = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1758,13 +1772,13 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Pricing_CartRuleUsage",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CartRuleId = table.Column<long>(type: "bigint", nullable: false),
-                    CouponId = table.Column<long>(type: "bigint", nullable: true),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CartRuleId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CouponId = table.Column<long>(type: "INTEGER", nullable: true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1793,11 +1807,11 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ProductComparison_ComparingProduct",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1820,17 +1834,17 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Reviews_Review",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rating = table.Column<int>(type: "int", nullable: false),
-                    ReviewerName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    EntityTypeId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    EntityId = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Title = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Comment = table.Column<string>(type: "TEXT", nullable: true),
+                    Rating = table.Column<int>(type: "INTEGER", nullable: false),
+                    ReviewerName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    EntityTypeId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    EntityId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1847,14 +1861,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "ShoppingCart_CartItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<long>(type: "bigint", nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    CustomerId = table.Column<long>(type: "INTEGER", nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1877,12 +1891,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "WishList_WishList",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    SharingCode = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    SharingCode = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1899,8 +1913,8 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "News_NewsItemCategory",
                 columns: table => new
                 {
-                    CategoryId = table.Column<long>(type: "bigint", nullable: false),
-                    NewsItemId = table.Column<long>(type: "bigint", nullable: false)
+                    CategoryId = table.Column<long>(type: "INTEGER", nullable: false),
+                    NewsItemId = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1923,15 +1937,15 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Orders_OrderHistory",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false),
-                    OldStatus = table.Column<int>(type: "int", nullable: true),
-                    NewStatus = table.Column<int>(type: "int", nullable: false),
-                    OrderSnapshot = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OldStatus = table.Column<int>(type: "INTEGER", nullable: true),
+                    NewStatus = table.Column<int>(type: "INTEGER", nullable: false),
+                    OrderSnapshot = table.Column<string>(type: "TEXT", nullable: true),
+                    Note = table.Column<string>(type: "TEXT", maxLength: 1000, nullable: true),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1954,15 +1968,15 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Orders_OrderItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<long>(type: "bigint", nullable: true),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    DiscountAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TaxAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TaxPercent = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: true),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductPrice = table.Column<double>(type: "REAL", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    DiscountAmount = table.Column<double>(type: "REAL", nullable: false),
+                    TaxAmount = table.Column<double>(type: "REAL", nullable: false),
+                    TaxPercent = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1985,17 +1999,17 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Payments_Payment",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentFee = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    GatewayTransactionId = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    FailureMessage = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    Amount = table.Column<double>(type: "REAL", nullable: false),
+                    PaymentFee = table.Column<double>(type: "REAL", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    GatewayTransactionId = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    FailureMessage = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2012,15 +2026,15 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Shipments_Shipment",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<long>(type: "bigint", nullable: false),
-                    TrackingNumber = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    WarehouseId = table.Column<long>(type: "bigint", nullable: false),
-                    VendorId = table.Column<long>(type: "bigint", nullable: true),
-                    CreatedById = table.Column<long>(type: "bigint", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OrderId = table.Column<long>(type: "INTEGER", nullable: false),
+                    TrackingNumber = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    WarehouseId = table.Column<long>(type: "INTEGER", nullable: false),
+                    VendorId = table.Column<long>(type: "INTEGER", nullable: true),
+                    CreatedById = table.Column<long>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -2049,14 +2063,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Reviews_Reply",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ReviewId = table.Column<long>(type: "bigint", nullable: false),
-                    UserId = table.Column<long>(type: "bigint", nullable: false),
-                    Comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReplierName = table.Column<string>(type: "nvarchar(450)", maxLength: 450, nullable: true),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ReviewId = table.Column<long>(type: "INTEGER", nullable: false),
+                    UserId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Comment = table.Column<string>(type: "TEXT", nullable: true),
+                    ReplierName = table.Column<string>(type: "TEXT", maxLength: 450, nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -2079,14 +2093,14 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "WishList_WishListItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WishListId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
-                    LatestUpdatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WishListId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedOn = table.Column<long>(type: "INTEGER", nullable: false),
+                    LatestUpdatedOn = table.Column<long>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -2109,12 +2123,12 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "Shipments_ShipmentItem",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ShipmentId = table.Column<long>(type: "bigint", nullable: false),
-                    OrderItemId = table.Column<long>(type: "bigint", nullable: false),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ShipmentId = table.Column<long>(type: "INTEGER", nullable: false),
+                    OrderItemId = table.Column<long>(type: "INTEGER", nullable: false),
+                    ProductId = table.Column<long>(type: "INTEGER", nullable: false),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -2163,6 +2177,7 @@ namespace SimplCommerce.WebHost.Migrations
                 {
                     { "Catalog.IsCommentsRequireApproval", true, "Catalog", "true" },
                     { "Catalog.IsProductPriceIncludeTax", true, "Catalog", "true" },
+                    { "Catalog.MinimumProductQuantityForHighlighting", true, "Catalog", "5" },
                     { "Catalog.ProductPageSize", true, "Catalog", "10" },
                     { "Global.AssetBundling", true, "Core", "false" },
                     { "Global.AssetVersion", true, "Core", "1.0" },
@@ -2220,8 +2235,8 @@ namespace SimplCommerce.WebHost.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedOn", "Culture", "DefaultBillingAddressId", "DefaultShippingAddressId", "Email", "EmailConfirmed", "ExtensionData", "FullName", "IsDeleted", "LatestUpdatedOn", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshTokenHash", "SecurityStamp", "TwoFactorEnabled", "UserGuid", "UserName", "VendorId" },
                 values: new object[,]
                 {
-                    { 2L, 0, "101cd6ae-a8ef-4a37-97fd-04ac2dd630e4", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "system@simplcommerce.com", false, null, "System User", true, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 189, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "SYSTEM@SIMPLCOMMERCE.COM", "SYSTEM@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "a9565acb-cee6-425f-9833-419a793f5fba", false, new Guid("5f72f83b-7436-4221-869c-1b69b2e23aae"), "system@simplcommerce.com", null },
-                    { 10L, 0, "c83afcbc-312c-4589-bad7-8686bd4754c0", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), null, null, null, "admin@simplcommerce.com", false, null, "Shop Admin", false, new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 190, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), false, null, "ADMIN@SIMPLCOMMERCE.COM", "ADMIN@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "d6847450-47f0-4c7a-9fed-0c66234bf61f", false, new Guid("ed8210c3-24b0-4823-a744-80078cf12eb4"), "admin@simplcommerce.com", null }
+                    { 2L, 0, "101cd6ae-a8ef-4a37-97fd-04ac2dd630e4", 1303821623688991140L, null, null, null, "system@simplcommerce.com", false, null, "System User", true, 1303821623688991140L, false, null, "SYSTEM@SIMPLCOMMERCE.COM", "SYSTEM@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "a9565acb-cee6-425f-9833-419a793f5fba", false, new Guid("5f72f83b-7436-4221-869c-1b69b2e23aae"), "system@simplcommerce.com", null },
+                    { 10L, 0, "c83afcbc-312c-4589-bad7-8686bd4754c0", 1303821623689011620L, null, null, null, "admin@simplcommerce.com", false, null, "Shop Admin", false, 1303821623689011620L, false, null, "ADMIN@SIMPLCOMMERCE.COM", "ADMIN@SIMPLCOMMERCE.COM", "AQAAAAEAACcQAAAAEAEqSCV8Bpg69irmeg8N86U503jGEAYf75fBuzvL00/mr/FGEsiUqfR0rWBbBUwqtw==", null, false, null, "d6847450-47f0-4c7a-9fed-0c66234bf61f", false, new Guid("ed8210c3-24b0-4823-a744-80078cf12eb4"), "admin@simplcommerce.com", null }
                 });
 
             migrationBuilder.InsertData(
@@ -2229,13 +2244,13 @@ namespace SimplCommerce.WebHost.Migrations
                 columns: new[] { "Id", "CreateUrl", "CreatedOn", "EditUrl", "IsPublished", "Name", "ViewComponentName" },
                 values: new object[,]
                 {
-                    { "CarouselWidget", "widget-carousel-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 164, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-carousel-edit", false, "Carousel Widget", "CarouselWidget" },
-                    { "CategoryWidget", "widget-category-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 160, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-category-edit", false, "Category Widget", "CategoryWidget" },
-                    { "HtmlWidget", "widget-html-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 164, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-html-edit", false, "Html Widget", "HtmlWidget" },
-                    { "ProductWidget", "widget-product-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 163, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-product-edit", false, "Product Widget", "ProductWidget" },
-                    { "RecentlyViewedWidget", "widget-recently-viewed-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 164, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-recently-viewed-edit", false, "Recently Viewed Widget", "RecentlyViewedWidget" },
-                    { "SimpleProductWidget", "widget-simple-product-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 163, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-simple-product-edit", false, "Simple Product Widget", "SimpleProductWidget" },
-                    { "SpaceBarWidget", "widget-spacebar-create", new DateTimeOffset(new DateTime(2018, 5, 29, 4, 33, 39, 164, DateTimeKind.Unspecified), new TimeSpan(0, 7, 0, 0, 0)), "widget-spacebar-edit", false, "SpaceBar Widget", "SpaceBarWidget" }
+                    { "CarouselWidget", "widget-carousel-create", 1303821623688479140L, "widget-carousel-edit", false, "Carousel Widget", "CarouselWidget" },
+                    { "CategoryWidget", "widget-category-create", 1303821623688397220L, "widget-category-edit", false, "Category Widget", "CategoryWidget" },
+                    { "HtmlWidget", "widget-html-create", 1303821623688479140L, "widget-html-edit", false, "Html Widget", "HtmlWidget" },
+                    { "ProductWidget", "widget-product-create", 1303821623688458660L, "widget-product-edit", false, "Product Widget", "ProductWidget" },
+                    { "RecentlyViewedWidget", "widget-recently-viewed-create", 1303821623688479140L, "widget-recently-viewed-edit", false, "Recently Viewed Widget", "RecentlyViewedWidget" },
+                    { "SimpleProductWidget", "widget-simple-product-create", 1303821623688458660L, "widget-simple-product-edit", false, "Simple Product Widget", "SimpleProductWidget" },
+                    { "SpaceBarWidget", "widget-spacebar-create", 1303821623688479140L, "widget-spacebar-edit", false, "SpaceBar Widget", "SpaceBarWidget" }
                 });
 
             migrationBuilder.InsertData(
@@ -2534,8 +2549,7 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "RoleNameIndex",
                 table: "Core_Role",
                 column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Core_RoleClaim_RoleId",
@@ -2571,8 +2585,7 @@ namespace SimplCommerce.WebHost.Migrations
                 name: "UserNameIndex",
                 table: "Core_User",
                 column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Core_UserAddress_AddressId",
@@ -3050,6 +3063,9 @@ namespace SimplCommerce.WebHost.Migrations
 
             migrationBuilder.DropTable(
                 name: "Core_WidgetInstance");
+
+            migrationBuilder.DropTable(
+                name: "Inventory_ProductBackInStockSubscription");
 
             migrationBuilder.DropTable(
                 name: "Inventory_Stock");

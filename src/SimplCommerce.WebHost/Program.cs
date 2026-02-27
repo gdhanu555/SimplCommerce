@@ -32,7 +32,7 @@ void ConfigureService()
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     builder.Configuration.AddEntityFrameworkConfig(options =>
     {
-        options.UseSqlServer(connectionString);
+        options.UseSqlite(connectionString);
     });
 
     GlobalConfiguration.WebRootPath = builder.Environment.WebRootPath;
