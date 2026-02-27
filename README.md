@@ -1,36 +1,30 @@
-# A simple, cross platform, modulith ecommerce system built on .NET Core [![Join the chat at https://gitter.im/simplcommerce/SimplCommerce](https://badges.gitter.im/simplcommerce/SimplCommerce.svg)](https://gitter.im/simplcommerce/SimplCommerce?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsimplcommerce%2FSimplCommerce.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsimplcommerce%2FSimplCommerce?ref=badge_shield)
+# A simple, cross platform, modulith ecommerce system built on .NET Core
 
 ## High level architecture
-
+ 
 ![SimpleCommerce - Modulith architecture](https://raw.githubusercontent.com/simplcommerce/SimplCommerce/master/modular-architecture.png)
 
-## Build Status
-| Build server    | Platform       | Status      |
-|-----------------|----------------|-------------|
-| Azure Pipelines | All            |[![Build Status](https://simplcommerce.visualstudio.com/simplcommerce/_apis/build/status/simplcommerce.SimplCommerce?branchName=master)](https://simplcommerce.visualstudio.com/simplcommerce/_build/latest?definitionId=1&branchName=master)
-|Travis           | Linux / MacOS  |[![Build Status](https://travis-ci.org/simplcommerce/SimplCommerce.svg?branch=master)](https://travis-ci.org/simplcommerce/SimplCommerce) |
 
-## Online demo (Azure Website)
+<!-- ## Online demo (Azure Website)
 - Store front: http://demo.simplcommerce.com
-- Administration: http://demo.simplcommerce.com/admin Email: admin@simplcommerce.com Password: 1qazZAQ!
+- Administration: http://demo.simplcommerce.com/admin Email: admin@simplcommerce.com Password: 1qazZAQ! -->
 
-## Docker
+<!-- ## Docker -->
 
-For testing purpose only `docker run -p 5000:80 simplcommerce/ci-build`
+<!-- For testing purpose only `docker run -p 5000:80 simplcommerce/ci-build` -->
 
-Continuous deployment: https://ci.simplcommerce.com
+<!-- Continuous deployment: https://ci.simplcommerce.com -->
 
-## Visual Studio 2022 and SQL Server
+## Visual Studio 2022 and SQLite
 
 #### Prerequisites
 
-- SQL Server
+- SQLite
 - Visual Studio 2022 and .NET 8
 
 #### Steps to run
 
-- Update the connection string: Open appsettings.json in src/SimplCommerce.WebHost. 
+<!-- - Update the connection string: Open appsettings.json in src/SimplCommerce.WebHost. 
   The default is configured for a local SQL Server
     ```json
     {
@@ -43,7 +37,7 @@ Continuous deployment: https://ci.simplcommerce.com
       "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=SimplCommerce;Trusted_Connection=True;TrustServerCertificate=true;MultipleActiveResultSets=true"
     }
     ```
-- Ensure you have a database named `SimplCommerce` created in your SQL instance, or change the `Database` name in the connection string to match your environment.
+- Ensure you have a database named `SimplCommerce` created in your SQL instance, or change the `Database` name in the connection string to match your environment. -->
 - Build the whole solution.
 - In Solution Explorer, make sure that SimplCommerce.WebHost is selected as the Startup Project
 - Open the Package Manager Console Window and make sure that SimplCommerce.WebHost is selected as the Default project. Then type "Update-Database" then press "Enter". This action will create the database schema.
@@ -54,7 +48,7 @@ Continuous deployment: https://ci.simplcommerce.com
 
 #### Prerequisite
 
-- PostgreSQL
+- SQLite
 - [.NET Core SDK 8.0](https://www.microsoft.com/net/download/all)
 - Entity Framework Core Tools (`dotnet tool install --global dotnet-ef`)
 
@@ -72,48 +66,5 @@ Continuous deployment: https://ci.simplcommerce.com
 - ASP.NET Identity Core
 - Angular 1.6.3
 - MediatR 7.0.0 for domain event
+- SQLite
 
-## Docs
-
-https://docs.simplcommerce.com/
-
-## Roadmap
-
-https://github.com/simplcommerce/SimplCommerce/wiki/Roadmap
-
-## How to contribute
-
-- Star this project on GitHub.
-- Report bugs or suggest features by creating new issues or adding comments to issues
-- Submit pull requests
-- Spread the word by blogging about SimplCommerce or sharing it on social networks
-- Donate to us
-
-## Contributors
-
-This project exists thanks to all the people who contribute.
-
-<a href="https://github.com/simplcommerce/SimplCommerce/graphs/contributors"><img src="https://opencollective.com/simplcommerce/contributors.svg?width=890" title="contributors" alt="contributors" /></a>
-
-## Backers
-
-Love our work and help us continue our activities? [[Become a backer](https://opencollective.com/simplcommerce#backer)]
-
-<a href="https://opencollective.com/simplcommerce#backers" target="_blank"><img src="https://opencollective.com/simplcommerce/backers.svg?width=890"></a>
-
-## Sponsors
-
-Become a sponsor and get your logo on our README on Github with a link to your site. [[Become a sponsor](https://opencollective.com/simplcommerce#sponsor)]
-
-<a href="https://opencollective.com/simplcommerce/sponsor/0/website" target="_blank"><img src="https://opencollective.com/simplcommerce/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/simplcommerce/sponsor/1/website" target="_blank"><img src="https://opencollective.com/simplcommerce/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/simplcommerce/sponsor/2/website" target="_blank"><img src="https://opencollective.com/simplcommerce/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/simplcommerce/sponsor/3/website" target="_blank"><img src="https://opencollective.com/simplcommerce/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/simplcommerce/sponsor/4/website" target="_blank"><img src="https://opencollective.com/simplcommerce/sponsor/4/avatar.svg"></a>
-
-## License
-
-SimplCommerce is licensed under the Apache 2.0 license.
-
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsimplcommerce%2FSimplCommerce.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsimplcommerce%2FSimplCommerce?ref=badge_large)
